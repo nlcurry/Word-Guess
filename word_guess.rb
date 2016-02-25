@@ -14,16 +14,17 @@ class word_guess
 	end
 
 	def image
-		puts "================================="
+		puts "=================================="
 		puts "     .-.  #{l[wrong_count]}  .--.  "
 		puts "    | OO| #{l[wrong_count]} / _.-' "
-		puts "    |   |  o  o  o  o  o  \  '-. "
+		puts %!    |   |  o  o  o  o  o    \\  '-. !
 		puts "    '^^^' #{l[wrong_count]}  '--'  "
-		puts ""
+		puts "=================================="
 	end
 
 l = ["               ", "            ", "         ","      ","   "] 
-dots = []
+dots = [5*" o ", 4*" o ", 3*" o ", 2*" o "," o ",""]
+
 	private
 	def guesses
 
