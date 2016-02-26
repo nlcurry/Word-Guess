@@ -15,6 +15,7 @@ class Word_guess
 		@word_list = ["ghost","pacman","purple", "bricks", "cool"]
 		@secret_word = @word_list.sample
 		@game_word = ("_"*@secret_word.length)
+		puts secret_word
 	end
 
 	#asks user for a letter to guess in the word
@@ -28,12 +29,15 @@ class Word_guess
 		@spaces = ["               ", "            ", "         ","      ","   ", ""] 
 		@dots = [" o "*5, " o "*4, " o "*3, " o "*2," o ",""]
 		@move = ["", "   ", "   "*2, "   "*3,"   "*4,"   "*5]
-
+		p1 = ".--.".colorize(:yellow)
+		p2 = "/ _.-'".colorize(:yellow)
+		p3 = %!\\  '-.!.colorize(:yellow)
+		p4 = "'--'".colorize(:yellow) 
 		puts "==================================="
-		puts "   #{@move[@wrong_count]}  .-.  #{@spaces[@wrong_count]}  .--.  "
-		puts "   #{@move[@wrong_count]} | OO| #{@spaces[@wrong_count]} / _.-' "
-		puts %! #{@move[@wrong_count]}   |   | #{@dots[@wrong_count]} \\  '-. !
-		puts "  #{@move[@wrong_count]}  '^^^' #{@spaces[@wrong_count]}  '--'  "
+		puts "   #{@move[@wrong_count]}  .-.  #{@spaces[@wrong_count]}  #{p1}  "
+		puts "   #{@move[@wrong_count]} | OO| #{@spaces[@wrong_count]} #{p2} "
+		puts %! #{@move[@wrong_count]}   |   | #{@dots[@wrong_count].colorize(:blue)} #{p3} !
+		puts "  #{@move[@wrong_count]}  '^^^' #{@spaces[@wrong_count]}  #{p4}  "
 		puts "==================================="
 		puts
 		puts "Word: #{@game_word}"
