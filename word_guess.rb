@@ -1,4 +1,5 @@
 #word guess game
+require "colorize"
 
 class Word_guess
 	attr_accessor :wrong_count, :word_list, :secret_word, :game_word
@@ -76,7 +77,9 @@ class Word_guess
 	def game_start
 		puts "lets start the game!"
 		word_gen
+		until wrong_count == 5
 		game_over?
+	end
 	end
 end
 
