@@ -57,7 +57,8 @@ class Word_guess
 	end
 
 	def image
-
+		@space1 = " "*(29 - (@game_word_array.length*2))
+		@space2 = " "*(19 - (@guessed_letters.length*2))
 		@spaces = ["               ", "            ", "         ","      ","   ", ""]
 		@dots = [" o "*5, " o "*4, " o "*3, " o "*2," o ",""]
 		@move = ["", "   ", "   "*2, "   "*3,"   "*4,"   "*5]
@@ -72,13 +73,13 @@ class Word_guess
 		puts "===================================".colorize(:color => :blue, :background => :black)
 		puts "   #{@move[@wrong_count]} #{@g1} #{@spaces[@wrong_count]}  #{@p1}  ".colorize(:background => :black)
 		puts "   #{@move[@wrong_count]} #{@g2} #{@spaces[@wrong_count]} #{@p2} ".colorize(:background => :black)
-		puts %! #{@move[@wrong_count]}   #{@g3} #{@dots[@wrong_count].colorize(:green)} #{@p3} !.colorize(:background => :black)
+		puts %! #{@move[@wrong_count]}   #{@g3} #{@dots[@wrong_count].colorize(:green).blink} #{@p3} !.colorize(:background => :black)
 		puts "  #{@move[@wrong_count]}  #{@g4} #{@spaces[@wrong_count]}  #{@p4}  ".colorize(:background => :black)
 		puts "===================================".colorize(:color => :blue, :background => :black)
-		puts
-		puts "Word: #{@game_word_array.join(" ")}"
-		puts "letters guessed: #{@guessed_letters.join(" ")}"
-		puts "Number of guesses left: #{5-@wrong_count}"
+		puts "                                   ".colorize(:color => :yellow, :background => :black)
+		puts "Word: #{@game_word_array.join(" ")} #{@space1}".colorize(:color => :yellow, :background => :black)
+		puts "letters guessed: #{@guessed_letters.join(" ")} #{@space2}".colorize(:color => :yellow, :background => :black)
+		puts "Number of guesses left: #{5-@wrong_count}          ".colorize(:color => :yellow, :background => :black)
 		puts "===================================".colorize(:color => :blue, :background => :black)
 		puts
 	end
@@ -105,38 +106,43 @@ class Word_guess
 				image
 				user_input
 			else
-
-				puts "===================================".colorize(:color => :green, :background => :black)
-				puts "   #{@move[@wrong_count]}  .-.  #{@spaces[@wrong_count]}  #{@p1}  ".colorize(:color => :green, :background => :black)
-				puts "   #{@move[@wrong_count]} | OO| #{@spaces[@wrong_count]} #{@p2} ".colorize(:color => :green, :background => :black)
-				puts %! #{@move[@wrong_count]}   |   | #{@dots[@wrong_count].colorize(:green)} #{@p3} !.colorize(:color => :green, :background => :black)
-				puts "  #{@move[@wrong_count]}  '^^^' #{@spaces[@wrong_count]}  #{@p4}  ".colorize(:color => :green, :background => :black)
-				puts "===================================".colorize(:color => :green, :background => :black)
-				puts
-				puts "Word: #{@game_word_array.join(" ")}".colorize(:green)
-				puts "letters guessed: #{@guessed_letters.join(" ")}".colorize(:green)
-				puts "Number of guesses left: #{5-@wrong_count}".colorize(:green)
-				puts "===================================".colorize(:color => :green, :background => :black)
-				puts "CONGRATS!!! YOU WON!!!!!!".colorize(:green)
+				@space1 = " "*(27 - (@game_word_array.length*2))
+				@space2 = " "*(19 - (@guessed_letters.length*2))
+				@space3 = " "*(26 - (@game_word_array.length))
+				puts "===================================".colorize(:color => :green, :background => :black).blink
+				puts "   #{@move[@wrong_count]}  .-.  #{@spaces[@wrong_count]}  #{@p1}  ".colorize(:color => :green, :background => :black).blink
+				puts "   #{@move[@wrong_count]} | OO| #{@spaces[@wrong_count]} #{@p2} ".colorize(:color => :green, :background => :black).blink
+				puts %! #{@move[@wrong_count]}   |   | #{@dots[@wrong_count].colorize(:green)} #{@p3} !.colorize(:color => :green, :background => :black).blink
+				puts "  #{@move[@wrong_count]}  '^^^' #{@spaces[@wrong_count]}  #{@p4}  ".colorize(:color => :green, :background => :black).blink
+				puts "===================================".colorize(:color => :green, :background => :black).blink
+				puts "                                   ".colorize(:color => :green, :background => :black).blink
+				puts "Word: #{@game_word_array.join(" ")}   #{@space1}".colorize(:color => :green, :background => :black)
+				puts "letters guessed: #{@guessed_letters.join(" ")} #{@space2}".colorize(:color => :green, :background => :black)
+				puts "Word is #{@secret_word} #{@space3}".colorize(:color => :green, :background => :black)
+				puts "Number of guesses left: #{5-@wrong_count}          ".colorize(:color => :green, :background => :black) 
+				puts "===================================".colorize(:color => :green, :background => :black).blink 
+				puts "CONGRATS!!! YOU WON!!!!!!".colorize(:color => :green, :background => :black).blink
 				puts
 				exit
 			end
 
 		elsif @wrong_count == 5
-
-			puts "===================================".colorize(:color => :red, :background => :black)
-			puts "   #{@move[@wrong_count]}  .-.  #{@spaces[@wrong_count]}  #{@p1}  ".colorize(:color => :red, :background => :black)
-			puts "   #{@move[@wrong_count]} | OO| #{@spaces[@wrong_count]} #{@p2} ".colorize(:color => :red, :background => :black)
-			puts %! #{@move[@wrong_count]}   |   | #{@dots[@wrong_count].colorize(:green)} #{@p3} !.colorize(:color => :red, :background => :black)
-			puts "  #{@move[@wrong_count]}  '^^^' #{@spaces[@wrong_count]}  #{@p4}  ".colorize(:color => :red, :background => :black)
-			puts "===================================".colorize(:color => :red, :background => :black)
-			puts
-			puts "Word: #{@game_word_array.join(" ")}".colorize(:red)
-				puts "letters guessed: #{@guessed_letters.join(" ")}".colorize(:red)
-			puts "Word is #{@secret_word}"
-			puts "Number of guesses left: #{5-@wrong_count}".colorize(:red)
-			puts "===================================".colorize(:color => :red, :background => :black)
-			puts "=( GAME OVER".colorize(:red)
+			@space1 = " "*(27 - (@game_word_array.length*2))
+			@space2 = " "*(19 - (@guessed_letters.length*2))
+			@space3 = " "*(26 - (@game_word_array.length))
+			puts "===================================".colorize(:color => :red, :background => :black).blink
+			puts "   #{@move[@wrong_count]}  .-.  #{@spaces[@wrong_count]}  #{@p1}  ".colorize(:color => :red, :background => :black).blink
+			puts "   #{@move[@wrong_count]} | OO| #{@spaces[@wrong_count]} #{@p2} ".colorize(:color => :red, :background => :black).blink
+			puts %! #{@move[@wrong_count]}   |   | #{@dots[@wrong_count].colorize(:green)} #{@p3} !.colorize(:color => :red, :background => :black).blink
+			puts "  #{@move[@wrong_count]}  '^^^' #{@spaces[@wrong_count]}  #{@p4}  ".colorize(:color => :red, :background => :black).blink
+			puts "===================================".colorize(:color => :red, :background => :black).blink
+			puts "                                   ".colorize(:color => :red, :background => :black).blink 
+			puts "Word: #{@game_word_array.join(" ")}   #{@space1}".colorize(:color => :red, :background => :black).blink 
+			puts "letters guessed: #{@guessed_letters.join(" ")} #{@space2}".colorize(:color => :red, :background => :black).blink 
+			puts "Word is #{@secret_word} #{@space3}".colorize(:color => :red, :background => :black).blink 
+			puts "Number of guesses left: #{5-@wrong_count}          ".colorize(:color => :red, :background => :black).blink 
+			puts "===================================".colorize(:color => :red, :background => :black).blink 
+			puts "=( GAME OVER                       ".colorize(:color => :red, :background => :black).blink 			
 			puts
 			exit
 		end
